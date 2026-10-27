@@ -1,6 +1,6 @@
 {
   "name": "@bison.digital/youtube-sdk",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "type": "module",
   "description": "Generated TypeScript SDK for YouTube Data API v3 with Live Chat support",
   "main": "dist/index.js",
@@ -58,7 +58,7 @@
   },
   "homepage": "https://github.com/bison-digital/youtube-sdk#readme",
   "dependencies": {
-    "zod": "^3.24.1"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",

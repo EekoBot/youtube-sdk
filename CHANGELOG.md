@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-10-27
+
+### Changed
+- **Breaking:** the generated schemas are built on zod 4 (`zod` ^4.6.7, was ^3.24.1).
+  Every exported schema is now a zod 4 type, so code that composes them with its
+  own zod 3 schemas has to move to zod 4 as well. The generated code uses only
+  APIs that are unchanged in zod 4 (two-argument `z.record`, `z.string().pipe(z.coerce.date())`).
+
+
 ### Added
 - Initial release of YouTube SDK
 - Generated from OpenAPI specification using SKMTC CLI
