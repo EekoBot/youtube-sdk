@@ -26,7 +26,7 @@
   ],
   "scripts": {
     "build": "npm run compile",
-    "generate": "deno run -A --unstable-kv jsr:@skmtc/cli@^0.0.153 generators:generate pregnant-tuna-704 .",
+    "generate": "deno run -A --unstable-kv jsr:@skmtc/cli@0.0.158 generators:generate moral-termite-562 .",
     "compile": "node fix-imports.js && node generate-types-index.js && tsc && rollup -c",
     "test": "vitest",
     "test:run": "vitest run",

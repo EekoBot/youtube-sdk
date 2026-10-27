@@ -46,8 +46,10 @@ jobs:
           rm -f .skmtc/moral-termite-562/deno.lock
           rm -f .skmtc/moral-termite-562/gen-basic-sdk/deno.lock
           
-          # Run the SKMTC CLI to generate SDK code
-          deno run -A --unstable-kv jsr:@skmtc/cli generators:generate moral-termite-562 .
+          # The CLI version is pinned in package.json's generate script: an
+          # unpinned jsr:@skmtc/cli resolved to a release without the
+          # generators:generate command and failed every build.
+          npm run generate
           
           echo "Generator completed successfully!"
           echo "Generated files:"
