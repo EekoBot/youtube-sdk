@@ -379,13 +379,21 @@ Integration tests are automatically skipped if credentials are missing - only sp
 
 ## Contributing
 
-This package is auto-generated from the OpenAPI specification. To contribute:
+This package is generated from the OpenAPI specification with [skmtc](https://skmtc.dev). The stack lives in `.skmtc/youtube-sdk`:
 
-1. Fork the repository
-2. Make changes to the OpenAPI spec in `.skmtc/openapi.yaml`
-3. Submit a pull request
+- `@skmtc/gen-typescript` and `@skmtc/gen-zod` generate the model types and schemas into `src/types/`
+- `gen-youtube-client` (in the project folder) generates `YouTubeClient` into `src/YouTubeClient.generated.ts`, one method per operation on top of the hand-written `src/SdkClientBase.ts`
 
-The GitHub Actions workflow will automatically regenerate and publish the package.
+To regenerate locally (needs Deno 2.9 or later):
+
+```bash
+npm install
+npm run generate   # skmtc CLI, version pinned in package.json
+npm run build
+npm run test:run
+```
+
+To contribute, change the OpenAPI spec in `.skmtc/openapi.yaml` or the generator in `.skmtc/youtube-sdk/gen-youtube-client`, then open a pull request. CI regenerates, builds and tests on every push, and publishes to npm when a release is created.
 
 ## License
 

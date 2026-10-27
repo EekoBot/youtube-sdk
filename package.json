@@ -26,7 +26,7 @@
   ],
   "scripts": {
     "build": "npm run compile",
-    "generate": "deno run -A --unstable-kv jsr:@skmtc/cli@0.0.158 generators:generate moral-termite-562 .",
+    "generate": "deno run --node-modules-dir=none --allow-read --allow-write --allow-net --allow-env --allow-run=deno,sh --allow-sys=homedir --unstable-worker-options jsr:@skmtc/cli@0.9.56 generate youtube-sdk --no-input",
     "compile": "node fix-imports.js && node generate-types-index.js && tsc && rollup -c",
     "test": "vitest",
     "test:run": "vitest run",
@@ -61,6 +61,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "12.3.0",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^20.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -73,7 +74,7 @@
     "prettier": "^3.0.0",
     "rimraf": "^5.0.0",
     "rollup": "^4.0.0",
-    "rollup-plugin-typescript2": "^0.36.0",
+    "tslib": "^2.8.1",
     "typescript": "^5.0.0",
     "vitest": "^3.2.4",
     "yaml": "^2.8.1"

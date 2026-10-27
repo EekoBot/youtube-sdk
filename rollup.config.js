@@ -1,5 +1,4 @@
-import typescript from 'rollup-plugin-typescript2';
-import ts from 'typescript';
+import typescript from '@rollup/plugin-typescript';
 
 export default [
   {
@@ -17,9 +16,13 @@ export default [
       }
     ],
     plugins: [
+      // tsc (the compile script's previous step) already emits the .d.ts files;
+      // this pass only transpiles for the two bundles.
       typescript({
-        typescript: ts,
-        clean: true
+        tsconfig: './tsconfig.json',
+        declaration: false,
+        declarationMap: false,
+        outDir: undefined
       })
     ],
     external: ['node-fetch', 'zod']

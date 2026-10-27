@@ -3,6 +3,17 @@
 /src/YouTubeClient.generated.ts
 /src/types/*.generated.ts
 /src/types/index.ts
+
+# skmtc: derived on every generate, or per-run records of generated output
+# that is itself not committed (see .skmtc/youtube-sdk)
+/.skmtc/*/bundle.js
+/.skmtc/*/worker.ts
+/.skmtc/*/.settings/manifest.json
+/.skmtc/*/.settings/generated.lock.json
+/.skmtc/*/.settings/logs.txt
+/.skmtc/*/.settings/error-logs.txt
+# The skmtc CLI's own resolution; the CLI version is pinned in package.json
+/deno.lock
 /dist/
 /lib/
 /build/

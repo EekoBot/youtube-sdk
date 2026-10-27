@@ -1,0 +1,6 @@
+{
+  "source": "./.skmtc/openapi.yaml",
+  "settings": {
+    "basePath": "src"
+  }
+}

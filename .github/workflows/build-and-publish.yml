@@ -24,9 +24,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Deno
-        uses: denoland/setup-deno@v1
+        uses: denoland/setup-deno@v2
         with:
-          deno-version: v1.x
+          # skmtc 0.9 shells out to `deno info`/`deno bundle` with flags Deno
+          # 2.8 rejects.
+          deno-version: v2.9.7
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -42,13 +44,10 @@ jobs:
         run: |
           echo "Generating YouTube SDK from OpenAPI spec..."
           
-          # Remove lockfiles to avoid version conflicts
-          rm -f .skmtc/moral-termite-562/deno.lock
-          rm -f .skmtc/moral-termite-562/gen-basic-sdk/deno.lock
-          
-          # The CLI version is pinned in package.json's generate script: an
-          # unpinned jsr:@skmtc/cli resolved to a release without the
-          # generators:generate command and failed every build.
+          # package.json's generate script pins the skmtc CLI, so CI and a
+          # local run generate the same output. The stack it runs (gen-zod,
+          # gen-typescript and the local gen-youtube-client) is
+          # .skmtc/youtube-sdk.
           npm run generate
           
           echo "Generator completed successfully!"
@@ -81,10 +80,9 @@ jobs:
           # Use our build process that handles all the fixes
           npm run build
 
-      - name: Run tests (if any)
-        run: |
-          # Add test command when tests are available
-          echo "No tests configured yet"
+      - name: Run tests
+        # Integration tests skip themselves without YouTube credentials.
+        run: npm run test:run
 
       - name: Publish to NPM (on release)
         if: github.event_name == 'release'
